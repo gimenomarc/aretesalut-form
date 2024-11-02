@@ -8,6 +8,7 @@ import SleepAndStress from './components/SleepAndStress';
 import Lifestyle from './components/Lifestyle';
 import HormonalHealth from './components/HormonalHealth';
 import DiagnosticTests from './components/DiagnosticTests';
+import logo from './assets/logo.png'; // Importa el logo
 
 const sections = [
   { component: PersonalInfo, title: 'Información Personal' },
@@ -30,7 +31,10 @@ export default function App() {
   const Section = sections[currentStep].component;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+      {/* Logo centrado y más grande */}
+      <img src={logo} alt="Logo" className="mb-6 w-50 h-auto" />
+      
       <div className="max-w-2xl w-full p-8 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold text-center mb-6">{sections[currentStep].title}</h2>
         <Section />
