@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/solid';
 import PersonalInfo from './components/PersonalInfo';
 import MedicalHistory from './components/MedicalHistory';
 import Goals from './components/Goals';
@@ -8,7 +9,7 @@ import SleepAndStress from './components/SleepAndStress';
 import Lifestyle from './components/Lifestyle';
 import HormonalHealth from './components/HormonalHealth';
 import DiagnosticTests from './components/DiagnosticTests';
-import logo from './assets/logo.png'; // Importa el logo
+import logo from './assets/logo.png';
 
 const sections = [
   { component: PersonalInfo, title: 'Información Personal' },
@@ -31,27 +32,32 @@ export default function App() {
   const Section = sections[currentStep].component;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      {/* Logo centrado y más grande */}
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-indigo-100 to-purple-200">
       <img src={logo} alt="Logo" className="mb-6 w-50 h-auto" />
       
-      <div className="max-w-2xl w-full p-8 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold text-center mb-6">{sections[currentStep].title}</h2>
+      <div className="max-w-2xl w-full p-8 bg-white rounded-lg shadow-lg transition-shadow duration-200 hover:shadow-2xl">
+        <h2 className="text-2xl font-semibold text-center mb-6 text-indigo-700">{sections[currentStep].title}</h2>
         <Section />
-        <div className="flex justify-between mt-4">
+        <div className="flex justify-between mt-6">
           <button
             onClick={goBack}
-            className="px-4 py-2 bg-gray-300 text-white rounded-md"
+            className={`flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md transition-all duration-200 hover:bg-indigo-500 focus:ring focus:ring-indigo-300 ${
+              currentStep === 0 ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
             disabled={currentStep === 0}
           >
+            <ArrowLeftIcon className="w-5 h-5 mr-2" />
             Anterior
           </button>
           <button
             onClick={goNext}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md"
+            className={`flex items-center px-4 py-2 bg-purple-600 text-white rounded-md transition-all duration-200 hover:bg-purple-500 focus:ring focus:ring-purple-300 ${
+              currentStep === sections.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
             disabled={currentStep === sections.length - 1}
           >
             Siguiente
+            <ArrowRightIcon className="w-5 h-5 ml-2" />
           </button>
         </div>
       </div>
